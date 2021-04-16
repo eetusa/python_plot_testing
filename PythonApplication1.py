@@ -2,13 +2,13 @@ import math
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
 
 center = (0,0)
 radius = 1.0
 
-p1 = [0.5, 0.5]
-p2 = [1,1]
-
+p1 = [0,0]
 
 
 def getRandomStepDistance():
@@ -50,14 +50,21 @@ def generatePointsFromCenter(n):
 	for i in range(n-1):
 		movePoint(point)
 		arr = np.append(arr, np.array([point]), axis=0)
-
+		
 	return arr
 
 
-arr = generatePointsFromCenter(10000)
+arr = generatePointsFromCenter(1000)
+print(arr.shape)
+
 
 #print(arr)
 plt.figure(figsize=(10,10))
 plt.plot(*zip(*arr), lw=0.3, marker='', color='r')
-plt.show()
 
+df = pd.DataFrame(arr, columns = ['x', 'y'])
+print(df.describe())
+#a = sns.scatterplot(x=df.x, y=df.y)
+#sns.scatterplot(x=df.x, y=df.y, data=df)
+#a.ax_joint.plot([0],[0],'o',ms=10 , mec='r', mfc='none')
+plt.show()
