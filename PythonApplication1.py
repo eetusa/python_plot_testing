@@ -59,8 +59,17 @@ print(arr.shape)
 
 
 #print(arr)
+
+
+circle2 = plt.Circle((0,0), 1, color='r', fill=False)
+
+
 plt.figure(figsize=(10,10))
+
 plt.plot(*zip(*arr), lw=0.3, marker='', color='r')
+
+#fig, ax = plt.subplots()
+plt.gca().add_patch(circle2)
 
 df = pd.DataFrame(arr, columns = ['x', 'y'])
 print(df.describe())
