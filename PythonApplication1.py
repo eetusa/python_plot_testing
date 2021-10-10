@@ -133,7 +133,6 @@ def getAllSubSectorsInSector(sector_array, circleRadius, sub_sec_amount, biggest
 			biggest_amount = subsector.shape[0]
 		if (subsector.shape[1] < smallest_amount):
 			smallest_amount = subsector.shape[1]
-		print(subsector.shape)
 		whole_sector_array.append(subsector)
 
 	return whole_sector_array
@@ -147,8 +146,8 @@ def colorFader(c1,c2,mix=0): #fade (linear interpolate) from color c1 (at mix=0)
 
 def plotSubSectors(allSubSecsArray, biggest_amount, smallest_amount):
 	#c1='#1f77b4' #blue
-	c2='red' #blue
-	c1='blue' #green
+	c2='red' #red
+	c1='blue' #blue
 	total_element_count = 0
 	#biggest_amount = -float('inf')
 	#smallest_amount = float('inf')
@@ -195,15 +194,16 @@ def getAllSectors(sector_arms, all_data, sub_sector_amount, biggest_amount, smal
 	return all_sectors
 
 def getAndDrawSectors(pointdata, sector_amount, subsector_amount):
+	"""Param: data, amount of sectors and amount of subsectors"""
 	biggest_amount = -float('inf')
 	smallest_amount = float('inf')
 
 	sectorArmsVectors = getSectorArmVectors(sector_amount, 45)
-	sectorArmsDrawVectors = insertCenterEveryOther(sectorArmsVectors)
+	#sectorArmsDrawVectors = insertCenterEveryOther(sectorArmsVectors)
 	#plt.plot(*zip(*sectorArmsDrawVectors), lw=0.9, marker='', color='b')
 
 	all_divided = getAllSectors(sectorArmsVectors, pointdata, subsector_amount, biggest_amount, smallest_amount)
-	print("here")
+
 	for i in range(len(all_divided)):
 		for  j in range (len(all_divided[i])):
 			amount = all_divided[i][j].shape[0]
@@ -222,7 +222,7 @@ center = (0,0)
 radius = 1.0
 
 p1 = [0,0]
-amountOfDataPoints = 10000
+amountOfDataPoints = 30000
 
 ###circle2 = plt.Circle((0,0), 1, color='r', fill=False)
 plt.figure(figsize=(10,10))
@@ -259,8 +259,8 @@ print("timed " + str(elapsed))
 
 
 
-getAndDrawSectors(arr1, 64, 64)
-#plt.plot(*zip(*arr1), lw=0.2, marker='', color='r')
+getAndDrawSectors(arr1, 128, 64)
+#plt.plot(*zip(*arr1), lw=0.1, marker='', color='black', alpha=1)
 #plt.plot(*zip(*arr), lw=0, marker='o', color='r')
 
 #fig, ax = plt.subplots()
